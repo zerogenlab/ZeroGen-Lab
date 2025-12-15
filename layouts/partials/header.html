@@ -1,0 +1,75 @@
+<header>
+  <nav class="bg-opacity-100 px-6 py-6 max-w-screen-xl mx-auto nav-enter nav-top">
+    <div class="nav-grid-3">
+
+      <!-- 左：Logo + 实验室名 -->
+      <div class="flex items-center">
+        <a href="{{ .Site.BaseURL }}" class="flex items-center">
+          <img
+            alt="ZeroGen Lab"
+            class="nav-logo"
+            src="/logo.png">
+          <span class="text-xl font-semibold tracking-tight">
+            {{ .Site.Title }}
+          </span>
+        </a>
+      </div>
+
+      <!-- 中：导航栏菜单（含教学下拉） -->
+      <div class="nav-center">
+        {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+
+            <!-- 教学（下拉） -->
+            <div class="nav-dropdown">
+              <span class="nav-link text-xl">
+                {{ .Name }}
+              </span>
+
+              <div class="nav-dropdown-menu">
+                {{ range .Children }}
+                  <a href="{{ .URL | safeURL }}"
+                     target="_blank"
+                     rel="noopener"
+                     class="nav-dropdown-item">
+                    {{ .Name }}
+                  </a>
+                {{ end }}
+              </div>
+            </div>
+
+          {{ else }}
+
+            <!-- 普通菜单 -->
+            <a href="{{ .URL | safeURL }}"
+               class="mr-8 text-xl hover:opacity-60 transition-opacity duration-200">
+              {{ .Name }}
+            </a>
+
+          {{ end }}
+        {{ end }}
+      </div>
+
+      <!-- 右：搜索框 -->
+      <div class="flex items-center justify-end">
+        <div class="search-wrap">
+          <input
+            id="siteSearch"
+            type="search"
+            placeholder="Search…"
+            class="search-input">
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+
+
+
+
+
+
+
+

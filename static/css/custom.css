@@ -1,0 +1,224 @@
+/* 
+ This CSS file is used to override the existing styles of the theme.
+ You can change the article headings, fonts, colors, etc.
+*/
+/* Navigation layout: strict 3-column grid */
+/* 导航 */
+.nav-top {
+  position: relative;
+  z-index: 1000;
+}
+
+/* 三列导航骨架 */
+.nav-grid-3 {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  min-height: 72px;   /* 控制导航高度，不再用 py-7/8 */
+}
+
+/* 中间菜单居中 */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* 导航进入动画 */
+.nav-enter {
+  opacity: 0;
+  transform: translateY(-12px);
+  animation: navFadeDown 0.8s ease-out forwards;
+}
+
+@keyframes navFadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*  教学下拉菜单  */
+
+.nav-dropdown {
+  position: relative;
+  margin-right: 2rem;
+}
+
+.nav-link {
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* 下拉面板 */
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0.5rem 0;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transition: all 0.2s ease;
+
+  z-index: 50;
+}
+
+/* hover 显示 */
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* 子项显示 */
+.nav-dropdown-item {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/*  搜索 UI  */
+.search-wrap{
+  position: relative;
+  width: 280px;               /* 你现在 w-56=224px，4K 上偏短；可改 260/300 */
+}
+
+.search-input{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 9999px;
+  padding: 0.55rem 1rem; /* 右侧留给快捷键提示 */
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.85);
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.search-input:focus{
+  outline: none;
+  background: #fff;
+  border-color: rgba(0,0,0,0.35);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/*  首页 Logo  */
+/* Logo hover 微交互 */
+.nav-logo {
+  height: 58px;
+  width: auto;
+  margin-right: 12px;
+  display: block;
+
+  transition: 
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+/*  Slide sizing  */
+.swiper-container {
+  height: clamp(360px, 40vh, 520px);  /* banner尺寸 */
+  position: relative;
+  overflow: hidden;            
+}
+
+/*  wrapper/slide 填满容器高度 */
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
+}
+
+/* 图片铺满并裁切，避免撑高 */
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Slide 顶部渐变过渡到导航 ===== */
+.swiper-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;   /* 控制过渡高度 */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.4) 40%,
+    rgba(255,255,255,0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/*  文本层：位置、层级、字号自适应 2K/4K  */
+.s-fade-txt {
+  position: absolute;
+  left: clamp(20px, 4vw, 64px);
+  bottom: clamp(20px, 4vw, 56px);
+  z-index: 2;
+}
+
+.s-fade-txt h1 {
+  font-size: clamp(28px, 3vw, 48px);  /* 替代 text-4xl 更适配4K */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ===== Slide 文本居中 ===== */
+.s-fade-txt {
+  position: absolute;
+  inset: 0;                /* 撑满整个 slide */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 3;
+  padding: 0 5vw;          /* 防止极窄时贴边 */
+}
+
+.s-fade-txt h1{
+  color:#fff;
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 1.15;
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.40);
+}
+
+/* 白色箭头 */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #ffffff;
+  font-size: 22px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* ===== Footer 视觉贴底 ===== */
+body.home footer {
+  margin-top: calc(100vh - 100%);
+}
+
+
+

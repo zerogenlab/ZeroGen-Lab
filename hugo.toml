@@ -1,0 +1,121 @@
+baseURL = "http://localhost:1313/"
+title = "ZeroGen Lab"
+author = "ZGL-Zhou Zhuhan"
+languageCode = "zh-cn"
+DefaultContentLanguage = "zh-cn"
+enableInlineShortcodes = true
+theme = "tella"
+enableRobotsTXT = true
+
+# Please enable this feature if the site is available in Japanese, Chinese or Korean.
+#hasCJKLanguage = true
+
+# If you're using Google Analytics, you can enable this feature.
+#googleAnalytics = "UA-12345678-1"
+
+# Disqus Comment System
+#disqusShortname = ""
+
+[params]
+
+  showBlog = true
+  mainSections = ['blog']
+  subtitle = 'The Best Widgets on Earth'
+
+  googleFonts = true
+
+  [params.logo]
+    main = "img/logo/logo.svg"
+    alt = "ZeroGen Lab Logo"
+
+    # The size parameter is the class name of tailwindcss
+    # https://tailwindcss.com/
+    size = "h-14"
+
+  [params.site]
+    name = "ZeroGen Lab"
+
+  [params.icon]
+    #If you want to use FontAwesome, set this parameter to true.
+    fontawesome = true
+
+  [params.homepage_meta_tags]
+    meta_description = "ZeroGen Lab:Exploring GenAI with a from-zero mindset."
+    meta_og_title = "ZeroGen Lab"
+    meta_og_type = "website"
+    #社交媒体分享时的标准 URL,待修改
+    meta_og_url = "https://tella.pages.dev"
+    #社交媒体分享时显示的预览图 URL，待修改
+    meta_og_image = "https://raw.githubusercontent.com/opera7133/tella/master/images/tn.png"
+    meta_og_description = "ZeroGen Lab:Exploring GenAI with a from-zero mindset."
+
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "members"
+    name = "成员"
+    url = "/members/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "projects"
+    name = "项目"
+    url = "/projects/"
+    weight = 3
+
+  [[menu.main]]
+    name = "教学"
+    identifier = "teaching"
+    weight = 4
+
+    [[menu.main]]
+      parent = "teaching"
+      name = "机器学习"
+      url = "https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/ml2025"
+      weight = 1
+
+    [[menu.main]]
+      parent = "teaching"
+      name = "人工智能理论与方法"
+      url = "https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/aitm-2025"
+      weight = 2
+
+    [[menu.main]]
+      parent = "teaching"
+      name = "从零开始语言模型构建实践"
+      url = "https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/lmfs2025"
+      weight = 3
+
+    
+  
+  [[menu.main]]
+    identifier = "coideas"
+    name = "Coideas Hub"
+    url = "https://你的-coideas-hub-地址"
+    weight = 5
+
+  [[menu.main]]
+    identifier = "join"
+    name = "加入我们"
+    url = "/join/"
+    weight = 6
+
+  # Footer Menu
+  [[menu.footer]]
+    name = "Home"
+    url = "/"
+      weight = 1
+
+  #待修改
+  [[menu.footer]]
+    name = "Github"
+    url = "https://github.com/opera7133/tella"
+    pre = "<i class='icon-github text-2xl'></i>"
+      weight = 2
