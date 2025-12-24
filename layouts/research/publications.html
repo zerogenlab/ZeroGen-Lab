@@ -9,7 +9,7 @@
         <colgroup>
           <col style="width:72px">
           <col style="width:350px">
-          <col style="width:450px"> 
+          <col style="width:480px"> 
           <col style="width:100px">
           <col style="width:100px">
           <col style="width:180px">
@@ -19,9 +19,9 @@
           <tr>
             <th>{{ i18n "num" }}</th>
             <th>{{ i18n "authors" }}</th>
-            <th>{{ i18n "name" }}</th>
+            <th>{{ i18n "title" }}</th>
+            <th style="text-align:center">{{ i18n "venue" }}</th>
             <th style="text-align:center">{{ i18n "date" }}</th>
-            <th>{{ i18n "venue" }}</th>
             <th style="text-align:center">{{ i18n "repo" }}</th>
           </tr>
         </thead>
@@ -33,6 +33,7 @@
               <td>
                 {{- $authors := $p.authors | default "" -}}
                 {{- $authors = replace $authors "Renjun Hu" "<strong>Renjun Hu</strong>" -}}
+                {{- $authors = replace $authors "#" "<sup class=\"author-mark\">#</sup>" -}}
                 {{- $authors | safeHTML -}}
               </td>
               <td>
@@ -40,16 +41,20 @@
                   <a href="{{ $p.link }}"
                     target="_blank"
                     rel="noopener"
-                    class="paper-link inline-flex items-center gap-1">
-                    <span>{{ $p.name }}</span>
-                    <i class="fa-regular fa-file-lines text-sm"></i>
+                    class="paper-link paper-title-row">
+                    
+                    <span class="paper-title-text">
+                      {{ $p.title }}
+                    </span>
+
+                    <span class="paper-title-icon">
+                      <i class="fa-regular fa-file-lines text-sm"></i>
+                    </span>
+
                   </a>
                 {{ else }}
-                  {{ $p.name }}
+                  {{ $p.title }}
                 {{ end }}
-              </td>
-              <td style="text-align:center;">
-                {{ $p.date }}
               </td>
               <td style="text-align:center;">
                 {{ with $p.venue }}
@@ -57,6 +62,9 @@
                 {{ else }}
                   -
                 {{ end }}
+              </td>
+              <td style="text-align:center;">
+                {{ $p.date }}
               </td>
               <td style="text-align:center;">
                 {{- $hasAny := or

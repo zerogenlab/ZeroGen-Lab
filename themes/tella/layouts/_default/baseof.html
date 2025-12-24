@@ -3,7 +3,9 @@
 
 <head>
   {{- partial "head.html" . -}}
-  {{ block "meta_tags" . }}{{end}}
+  {{ block "meta_tags" . }}
+    {{- partial "seo/print.html" . -}}
+  {{end}}
 </head>
 
 <body class="flex flex-col min-h-screen">

@@ -38,4 +38,7 @@ repo:
   other: "Repository"
 
 date:
-  other: "Publication Date"
+  other: "Year"
+
+title:
+  other: "Title"

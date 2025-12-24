@@ -9,12 +9,12 @@
   z-index: 1000;
 }
 
-/* 三列导航骨架 */
+/* 三列导航 */
 .nav-grid-3 {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  min-height: 72px;   /* 控制导航高度，不再用 py-7/8 */
+  min-height: 72px;   /* 控制导航高度 */
 }
 
 /* 中间菜单居中 */
@@ -160,7 +160,7 @@
   height: 100%;
 }
 
-/* 图片铺满并裁切，避免撑高 */
+/* 图片铺满并裁切 */
 .swiper-slide img {
   width: 100%;
   height: 100%;
@@ -168,7 +168,7 @@
   display: block;
 }
 
-/* ===== Slide 顶部渐变过渡到导航 ===== */
+/* Slide 顶部渐变过渡到导航 */
 .swiper-container::before {
   content: "";
   position: absolute;
@@ -186,7 +186,7 @@
   pointer-events: none;
 }
 
-/* ===== Slide 文本居中 ===== */
+/* Slide 文本居中 */
 .s-fade-txt {
   position: absolute;
   inset: 0;                /* 撑满整个 slide */
@@ -250,7 +250,7 @@
     visibility 0.15s ease;
 }
 
-/* ===== Footer 视觉贴底 ===== */
+/* Footer 视觉贴底 */
 body.home footer {
   margin-top: calc(100vh - 100%);
 }
@@ -346,7 +346,7 @@ body.home footer {
   text-align: center;
 }
 
-/* ===== 论文/仓库链接样式（限定在表格里，防止被主题覆盖） ===== */
+/* 论文/仓库链接样式（限定在表格里，防止被主题覆盖） */
 .data-table a.paper-link,
 .data-table a.repo-link{
   color: #1E2939;
@@ -374,9 +374,23 @@ body.home footer {
   font-weight: 700 !important;
 }
 
-/* =====================================================
-   About Page 
-   ===================================================== */
+/* 论文标题 + 文档 icon 对齐 */
+.data-table a.paper-title-row {
+  display: flex;
+  align-items: flex-start;          /* icon 对齐第一行文字 */
+  justify-content: space-between;   /* 左右分离 */
+  gap: 12px;
+}
+
+.data-table .paper-title-text {
+  flex: 1;
+  min-width: 0;                     /* 防止长标题撑破布局 */
+}
+
+.data-table .paper-title-icon {
+  flex-shrink: 0;
+  margin-top: 2px;                  /* 细微视觉对齐 */
+}
 
 /* About 页面整体作用域 */
 .about-page {
@@ -416,9 +430,7 @@ body.home footer {
   margin-bottom: 0.6rem;
 }
 
-/* =====================================================
-   新闻详情页套用about样式
-   ===================================================== */
+/* 新闻详情页套用about样式*/
 .longform {
   max-width: 68ch;
   margin: 0 auto;
