@@ -140,7 +140,7 @@
   slides: "slides"
   link3: "https://hurenjun.github.io/pubs/icde2018-slides.pdf"
   benchmark: "benchmark"
-  link4: "/files/benchmark.zip"
+  link4: "/files/benchmark.rar"
 
 - authors: "Shuai Ma, Renjun Hu, Luoshu Wang, Xuelian Lin, and Jinpeng Huai"
   title: "Fast Computation of Dense Temporal Subgraphs."

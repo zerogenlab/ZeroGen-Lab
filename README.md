@@ -2,4 +2,4 @@
 
 Official website of **ZeroGen Lab**.
 
-🌐 Live site: https://zerogenlab.github.io/ZeroGen-Lab/
+🌐 Live site: https://zerogenlab.github.io/

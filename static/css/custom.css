@@ -203,17 +203,7 @@
   font-size: clamp(36px, 4vw, 64px);
   line-height: 1.15;
   font-weight: 700;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.40);  /* windows样式 */
-}
-
-/* macOS 字体抗锯齿和阴影优化 */
-@supports (-webkit-touch-callout: none) {
-  .s-fade-txt h1{
-    -webkit-font-smoothing: antialiased;
-    text-shadow:
-      0 1px 2px rgba(0,0,0,.30),
-      0 6px 18px rgba(0,0,0,.20);
-  }
+  text-shadow: 0 10px 28px rgba(0,0,0,0.18);  
 }
 
 /* 白色箭头 */
