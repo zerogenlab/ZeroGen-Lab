@@ -6,3 +6,36 @@ news:
 
 more:
   other: "More"
+
+fundings:
+  other: "Fundings"
+
+num:
+  other: "No."
+
+name:
+  other: "Name"
+
+source:
+  other: "Source"
+
+members:
+  other: "Members"
+
+period_1:
+  other: "Start Period"
+
+period_2:
+  other: "Duration"
+
+authors:
+  other: "Authors"
+
+venue:
+  other: "Venue"
+
+repo:
+  other: "Repository"
+
+date:
+  other: "Publication Date"

@@ -5,20 +5,24 @@
     <h1 class="page-title text-3xl py-12">{{ .Title }}</h1>
 
     <div class="data-table-wrap">
-      <table class="data-table" style="font-size:16px; line-height:1.65;">
+      <table class="data-table" style="font-size:18px; line-height:1.65;">
         <colgroup>
           <col style="width:72px">
-          <col style="width:360px">   <!-- 名称列：加宽 -->
-          <col style="width:260px">
-          <col style="width:160px">
+          <col style="width:350px">
+          <col style="width:450px"> 
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:180px">
         </colgroup>
 
         <thead>
           <tr>
-            <th>序号</th>
-            <th style="text-align:center">名称</th>
-            <th>作者</th>
-            <th>发表时间</th>
+            <th>{{ i18n "num" }}</th>
+            <th>{{ i18n "authors" }}</th>
+            <th>{{ i18n "name" }}</th>
+            <th style="text-align:center">{{ i18n "date" }}</th>
+            <th>{{ i18n "venue" }}</th>
+            <th style="text-align:center">{{ i18n "repo" }}</th>
           </tr>
         </thead>
 
@@ -27,19 +31,105 @@
             <tr>
               <td>{{ add $i 1 }}</td>
               <td>
+                {{- $authors := $p.authors | default "" -}}
+                {{- $authors = replace $authors "Renjun Hu" "<strong>Renjun Hu</strong>" -}}
+                {{- $authors | safeHTML -}}
+              </td>
+              <td>
                 {{ if $p.link }}
                   <a href="{{ $p.link }}"
                     target="_blank"
                     rel="noopener"
-                    class="paper-link">
-                    {{ $p.name }}
+                    class="paper-link inline-flex items-center gap-1">
+                    <span>{{ $p.name }}</span>
+                    <i class="fa-regular fa-file-lines text-sm"></i>
                   </a>
                 {{ else }}
                   {{ $p.name }}
                 {{ end }}
               </td>
-              <td>{{ $p.authors }}</td>
-              <td style="text-align: center;">{{ $p.date }}</td>
+              <td style="text-align:center;">
+                {{ $p.date }}
+              </td>
+              <td style="text-align:center;">
+                {{ with $p.venue }}
+                  {{ . }}
+                {{ else }}
+                  -
+                {{ end }}
+              </td>
+              <td style="text-align:center;">
+                {{- $hasAny := or
+                    (and $p.repo (ne $p.repo "-"))
+                    (and $p.slides (ne $p.slides "-"))
+                    (and $p.benchmark (ne $p.benchmark "-"))
+                    (and $p.poster (ne $p.poster "-"))
+                -}}
+
+                {{- if not $hasAny -}}
+                  -
+                {{- else -}}
+                  <div class="flex flex-col items-center gap-y-1">
+
+                    {{/* Repo*/}}
+                    {{ if and $p.repo (ne $p.repo "-") }}
+                      {{ if $p.link2 }}
+                        <a href="{{ $p.link2 }}"
+                          target="_blank"
+                          rel="noopener"
+                          class="repo-link inline-flex items-center gap-2">
+                          <span style="color: inherit;">{{ $p.repo }}</span>
+                          <i class="fa-brands fa-github" style="color: inherit;"></i>
+                        </a>
+                      {{ else }}
+                        <span>{{ $p.repo }}</span>
+                      {{ end }}
+                    {{ end }}
+
+                    {{/* Slides */}}
+                    {{ if and $p.slides (ne $p.slides "-") }}
+                      {{ if $p.link3 }}
+                        <a href="{{ $p.link3 }}"
+                          target="_blank"
+                          rel="noopener"
+                          class="repo-link">
+                          <span style="color: inherit;">{{ $p.slides }}</span>
+                        </a>
+                      {{ else }}
+                        <span>{{ $p.slides }}</span>
+                      {{ end }}
+                    {{ end }}
+
+                    {{/* Benchmark */}}
+                    {{ if and $p.benchmark (ne $p.benchmark "-") }}
+                      {{ if $p.link4 }}
+                        <a href="{{ $p.link4 | relURL }}"
+                          class="repo-link"
+                          download>
+                          <span style="color: inherit;">{{ $p.benchmark }}</span>
+                        </a>
+                      {{ else }}
+                        <span>{{ $p.benchmark }}</span>
+                      {{ end }}
+                    {{ end }}
+
+                    {{/* Poster*/}}
+                    {{ if and $p.poster (ne $p.poster "-") }}
+                      {{ if $p.link5 }}
+                        <a href="{{ $p.link5 }}"
+                          target="_blank"
+                          rel="noopener"
+                          class="repo-link">
+                          <span style="color: inherit;">{{ $p.poster }}</span>
+                        </a>
+                      {{ else }}
+                        <span>{{ $p.poster }}</span>
+                      {{ end }}
+                    {{ end }}
+
+                  </div>
+                {{- end -}}
+              </td>
             </tr>
           {{ end }}
         </tbody>

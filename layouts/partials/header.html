@@ -2,6 +2,34 @@
   <script defer src="{{ "js/fuse.min.js" | relURL }}"></script>
   <script defer src="{{ "js/search.js" | relURL }}"></script>
 
+  <style>
+  /* 导航字体响应式 */
+  .nav-item {
+    font-size: clamp(16px, 1.2vw, 26px);
+    line-height: 1.2;
+  }
+
+  /* Logo 旁标题 */
+  .nav-brand {
+    font-size: clamp(16px, 1.8vw, 26px);
+    line-height: 1.1;
+  }
+
+  /* 导航间距响应式  */
+  .nav-center {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    gap: clamp(8px, 2vw, 32px);
+  }
+
+  /* 小地球图标 */
+  .lang-icon {
+    transform: scale(1.15);  
+    display: inline-block;    
+  }
+</style>
+
   <nav class="bg-opacity-100 px-6 py-6 mx-auto nav-enter nav-top">
     <div class="grid cols-[auto_1fr_auto] items-center h-72px gap-3">
 
@@ -12,21 +40,21 @@
             alt="ZeroGen Lab"
             class="nav-logo"
             src="/logo.png">
-          <span class="text-3xl font-normal tracking-tight hidden xl:block">
+          <span class="nav-brand font-normal tracking-tight hidden xl:block">
             {{ .Site.Title }}
           </span>
         </a>
       </div>
 
       <!-- 中：导航栏菜单（含教学下拉） -->
-      <div class="flex items-center whitespace-nowrap gap-4 lg:gap-8 justify-center">
+      <div class="nav-center items-center">
         {{ range .Site.Menus.main }}
 
           {{ if .HasChildren }}
             <div class="nav-dropdown
                         {{ if eq .Identifier "research" }}nav-dropdown--research{{ end }}
                         {{ if eq .Identifier "teaching" }}nav-dropdown--teaching{{ end }}">
-              <span class="nav-link lg:text-2xl text-lg">
+              <span class="nav-link nav-item">
                 {{ .Name }}
               </span>
 
@@ -48,7 +76,7 @@
           {{ else }}
             <!-- 普通菜单 -->
             <a href="{{ .URL | safeURL }}"
-               class="xl:text-2xl text-lg hover:opacity-60 transition-opacity duration-200">
+               class="nav-item hover:opacity-60 transition-opacity duration-200">
               {{ .Name }}
             </a>
 
@@ -63,7 +91,7 @@
                          transition"
                   aria-label="Language switcher"
                 >
-                  <i class="fas fa-globe"></i>
+                  <i class="fas fa-globe lang-icon"></i>
                 </button>
 
                 <div

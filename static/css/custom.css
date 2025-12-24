@@ -186,14 +186,6 @@
   pointer-events: none;
 }
 
-/*  文本层：位置、层级、字号自适应 2K/4K  */
-.s-fade-txt h1 {
-  font-size: clamp(28px, 3vw, 48px);  /* 替代 text-4xl 更适配4K */
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
 /* ===== Slide 文本居中 ===== */
 .s-fade-txt {
   position: absolute;
@@ -211,7 +203,17 @@
   font-size: clamp(36px, 4vw, 64px);
   line-height: 1.15;
   font-weight: 700;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.40);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.40);  /* windows样式 */
+}
+
+/* macOS 字体抗锯齿和阴影优化 */
+@supports (-webkit-touch-callout: none) {
+  .s-fade-txt h1{
+    -webkit-font-smoothing: antialiased;
+    text-shadow:
+      0 1px 2px rgba(0,0,0,.30),
+      0 6px 18px rgba(0,0,0,.20);
+  }
 }
 
 /* 白色箭头 */
@@ -271,7 +273,7 @@ body.home footer {
   color: #1E2939;
   font-weight: 700;
   text-align: center;
-  margin: 0 0 18px;
+  margin: 0 0 10px;
   opacity: 0;
   transform: translateY(-12px);
   animation: titleFadeDown 0.8s ease-out forwards;
@@ -282,8 +284,28 @@ body.home footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* 页面区块标题（Fundings） */
+.section-title{
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1.15;
+  color: #1E2939;
+  font-weight: 700;
+  text-align: center;
+  margin: 60px 0 10px;
+
+  opacity: 0;
+  transform: translateY(-12px);
+  animation: titleFadeDown 0.8s ease-out forwards;
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce){
-  .page-title{ animation: none; opacity: 1; transform: none; }
+  .page-title,
+  .section-title{
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* 表格容器 */
@@ -324,19 +346,32 @@ body.home footer {
   text-align: center;
 }
 
-/* ===== 论文链接样式 ===== */
-.paper-link {
-  color: #1E2939;          
+/* ===== 论文/仓库链接样式（限定在表格里，防止被主题覆盖） ===== */
+.data-table a.paper-link,
+.data-table a.repo-link{
+  color: #1E2939;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.paper-link:hover {
+/* hover 下划线 */
+.data-table a.paper-link:hover,
+.data-table a.repo-link:hover{
   text-decoration: underline;
 }
 
-.paper-link.is-clicked {
-  color: #9CA3AF;          /* 当前会话点过：灰色 */
+/* 当前会话点过：灰色 */
+.data-table a.paper-link.is-clicked,
+.data-table a.paper-link.is-clicked span,
+.data-table a.paper-link.is-clicked i,
+.data-table a.repo-link.is-clicked,
+.data-table a.repo-link.is-clicked span,
+.data-table a.repo-link.is-clicked i{
+  color: #9CA3AF;
+}
+
+.data-table strong {
+  font-weight: 700 !important;
 }
 
 /* =====================================================

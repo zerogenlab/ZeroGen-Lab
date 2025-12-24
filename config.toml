@@ -83,11 +83,13 @@ hasCJKLanguage = true
   [[languages.zh.menu.main]]
     parent = "research"
     name = "论文"
+    url = "/research/publications/"
     weight = 1
 
   [[languages.zh.menu.main]]
     parent = "research"
     name = "项目"
+    url = "/research/projects/"
     weight = 2
 
   [[languages.zh.menu.main]]
@@ -115,8 +117,8 @@ hasCJKLanguage = true
 
   [[languages.zh.menu.main]]
     identifier = "coideas"
-    name = "Coideas Hub"
-    url = "https://你的-coideas-hub-地址"
+    name = "Coideas.Me"
+    url = "/coideas/"
     weight = 5
 
   [[languages.zh.menu.main]]
@@ -148,12 +150,14 @@ hasCJKLanguage = true
   
   [[languages.en.menu.main]]
     parent = "research"
-    name = "publications"
+    name = "Publications"
+    url = "/en/research/publications/"
     weight = 1
 
   [[languages.en.menu.main]]
     parent = "research"
-    name = "projects"
+    name = "Projects&Fundings"
+    url = "/en/research/projects/"
     weight = 2
 
   [[languages.en.menu.main]]
@@ -179,10 +183,11 @@ hasCJKLanguage = true
     url = "https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/lmfs2025"
     weight = 3
 
+  # 待修改
   [[languages.en.menu.main]]
     identifier = "coideas"
-    name = "Coideas Hub"
-    url = "https://你的-coideas-hub-地址"
+    name = "Coideas.Me"
+    url = "/en/coideas"
     weight = 5
 
   [[languages.en.menu.main]]

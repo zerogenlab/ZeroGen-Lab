@@ -6,3 +6,36 @@ news:
 
 more: 
   other: "更多"
+
+fundings:
+  other: "资金项目"
+
+num:
+  other: "序号"
+
+name:
+  other: "名称"
+
+source:
+  other: "来源"
+
+members:
+  other: "成员"
+
+period_1:
+  other: "起始时间"
+
+period_2:
+  other: "起止时间"
+
+authors:
+  other: "作者"
+
+venue:
+  other: "会议/期刊"
+
+repo:
+  other: "仓库"
+
+date:
+  other: "发表时间"

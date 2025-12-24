@@ -1,22 +1,26 @@
 {{ define "main" }}
   {{ $items := index .Site.Data "research" "projects" .Lang }}
+  {{ $fundings := index .Site.Data "research" "fundings" .Lang }}
+
   
   <section class="container mx-auto px-4 py-10">
     <h1 class="page-title text-3xl py-12">{{ .Title }}</h1>
 
     <div class="data-table-wrap">
-      <table class="data-table" style="font-size:16px; line-height:1.65;">
+      <table class="data-table" style="font-size:18px; line-height:1.65;">
         <colgroup>
           <col style="width:72px">
           <col style="width:300px"> 
           <col style="width:160px">
-          
+          <col style="width:200px">
+
         </colgroup>
         <thead>
           <tr>
-            <th>序号</th>
-            <th style="text-align: center;">名称</th>
-            <th>起始时间</th>
+            <th>{{ i18n "num" }}</th>
+            <th>{{ i18n "name" }}</th>
+            <th>{{ i18n "members" }}</th>
+            <th>{{ i18n "period_1" }}</th>
           </tr>
         </thead>
 
@@ -25,7 +29,47 @@
             <tr>
               <td>{{ add $i 1 }}</td>
               <td>{{ $p.name }}</td>
+              <td>{{ $p.members }}</td>
               <td>{{ $p.period }}</td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fundings -->
+    <h2 class="section-title py-12">
+      {{ i18n "fundings"}}
+    </h2>
+
+    <div class="data-table-wrap">
+      <table class="data-table" style="font-size:18px; line-height:1.65;">
+        <colgroup>
+          <col style="width:72px">
+          <col style="width:300px">
+          <col style="width:300px">
+          <col style="width:160px">
+          <col style="width:160px">
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th>{{ i18n "num" }}</th>
+            <th>{{ i18n "name" }}</th>
+            <th>{{ i18n "source" }}</th>
+            <th>{{ i18n "members" }}</th>
+            <th>{{ i18n "period_2" }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{ range $i, $f := $fundings }}
+            <tr>
+              <td>{{ add $i 1 }}</td>
+              <td>{{ $f.name }}</td>
+              <td>{{ $f.source }}</td>
+              <td>{{ $f.members }}</td>
+              <td>{{ $f.period }}</td>
             </tr>
           {{ end }}
         </tbody>
