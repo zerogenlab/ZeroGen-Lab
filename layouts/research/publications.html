@@ -4,7 +4,7 @@
   <section class="container mx-auto px-4 py-10">
     <h1 class="page-title text-3xl py-12">{{ .Title }}</h1>
 
-    <div class="data-table-wrap">
+    <div class="data-table-wrap text-[#1E2939]">
       <table class="data-table" style="font-size:18px; line-height:1.65;">
         <colgroup>
           <col style="width:72px">
@@ -37,24 +37,7 @@
                 {{- $authors | safeHTML -}}
               </td>
               <td>
-                {{ if $p.link }}
-                  <a href="{{ $p.link }}"
-                    target="_blank"
-                    rel="noopener"
-                    class="paper-link paper-title-row">
-                    
-                    <span class="paper-title-text">
-                      {{ $p.title }}
-                    </span>
-
-                    <span class="paper-title-icon">
-                      <i class="fa-regular fa-file-lines text-sm"></i>
-                    </span>
-
-                  </a>
-                {{ else }}
                   {{ $p.title }}
-                {{ end }}
               </td>
               <td style="text-align:center;">
                 {{ with $p.venue }}
@@ -68,6 +51,7 @@
               </td>
               <td style="text-align:center;">
                 {{- $hasAny := or
+                    (and $p.link (ne $p.link "-"))
                     (and $p.repo (ne $p.repo "-"))
                     (and $p.slides (ne $p.slides "-"))
                     (and $p.benchmark (ne $p.benchmark "-"))
@@ -78,7 +62,17 @@
                   -
                 {{- else -}}
                   <div class="flex flex-col items-center gap-y-1">
-
+                    {{/* Paper */}}
+                    {{- $paper := "Paper" -}}
+                    {{ if and $p.link (ne $p.link "-") }}
+                      <a href="{{ $p.link }}"
+                        target="_blank"
+                        rel="noopener"
+                        class="paper-link inline-flex items-center gap-2">
+                        <span style="color: inherit;">{{ $paper }}</span>
+                        <i class="fa-regular fa-file-lines text-sm" style="color: inherit;"></i>
+                      </a>
+                    {{ end }}
                     {{/* Repo*/}}
                     {{ if and $p.repo (ne $p.repo "-") }}
                       {{ if $p.link2 }}
@@ -135,6 +129,8 @@
                       {{ end }}
                     {{ end }}
 
+                    
+
                   </div>
                 {{- end -}}
               </td>
@@ -145,3 +141,4 @@
     </div>
   </section>
 {{ end }}
+

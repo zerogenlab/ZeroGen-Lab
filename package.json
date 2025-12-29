@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "concurrently npm:dev:*",
     "dev:css": "unocss --watch",
-    "dev:hugo": "hugo server",
+    "dev:hugo": "hugo server -D --environment development --environment production",
     "build:css": "unocss -m",
     "build": "npm run build:css && hugo --minify",
     "prepare": "npm run build:css"

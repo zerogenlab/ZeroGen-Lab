@@ -5,6 +5,8 @@ sections:
         photo: /img/members/advisor.jpeg
         desc: Generative and Agentic AI
         grade: Young Researcher
+        github: https://github.com/hurenjun
+        scholar: https://scholar.google.com/citations?user=H3jomREAAAAJ&hl=en
 # 博士生
   - title: PhD Students
     people:

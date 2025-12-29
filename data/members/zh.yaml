@@ -5,6 +5,8 @@ sections:
         photo: /img/members/advisor.jpeg
         desc: 生成式人工智能、智能体
         grade: 青年研究员
+        github: https://github.com/hurenjun
+        scholar: https://scholar.google.com/citations?user=H3jomREAAAAJ&hl=en
 # 博士生
   - title: 博士生
     people:
