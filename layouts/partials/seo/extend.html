@@ -1,31 +1,21 @@
-{{/* 
-	Add/Edit SEO Scratch Object
-	
-	@author The New Dynamic
-	
-	@access public
+{{ if .IsHome }}
+  {{ .Scratch.SetInMap "seo" "title" .Site.Title }}
+  {{ .Scratch.SetInMap "seo" "description" .Site.Params.description }}
+  {{ .Scratch.SetInMap "seo" "type" "website" }}
 
-	@context Page 
+  {{ $img := "" }}
 
-	User does not load the partial, as the component will. 
-	This allows to overwrite some SEO object keys with project's own.
-	Project's partial should live under `layouts/partials/seo/extend.html`
+  {{ with .Site.Params.homepage_meta_tags.meta_og_image }}
+    {{ if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+      {{ $img = . }}
+    {{ else }}
+      {{ $img = (. | absURL) }}
+    {{ end }}
+  {{ end }}
 
-	@example - In Partial
-		{{- if eq "Type" "recipe" -}}
-		{{- .Scratch.SetInMap "seo" "type" "article" -}}
-		{{- end -}}
+  {{ if eq $img "" }}
+    {{ $img = ("/img/logo/ZEROGENLAB_LOGO.png" | absURL) }}
+  {{ end }}
 
-		{{- $locales := dict "fr" "fr_FR" "en" "en_US" -}}
-		{{- .Scratch.SetInMap "seo" "locale" (index $locales .Lang) -}}
-
-		{{- if .IsHome -}}
-		{{- .Scratch.SetInMap "seo" "title" "Welcome Home" -}}
-		{{- end -}}
- */}}
-
-		{{- if .IsHome -}}
-		{{- .Scratch.SetInMap "seo" "title" .Site.Title -}}
-		{{- .Scratch.SetInMap "seo" "description" .Site.Params.description -}}
-		{{- .Scratch.SetInMap "seo" "type" "website" -}}
-		{{- end -}}
+  {{ .Scratch.SetInMap "seo" "image" $img }}
+{{ end }}

@@ -4,8 +4,8 @@ canonifyURLs = true
 relativeURLs = false
 title = "ZeroGen Lab"
 author = "ZGL-Zhou Zhuhan"
-languageCode = "zh"
-DefaultContentLanguage = "zh"
+languageCode = "en"
+DefaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableInlineShortcodes = true
 theme = "tella"
@@ -21,13 +21,13 @@ hasCJKLanguage = true
 #disqusShortname = ""
 
 [languages]
-  [languages.zh]
-    languageName = "简体中文"
+  [languages.en]
+    languageName = "English"
     weight = 1
     contentDir = "content"
 
-  [languages.en]
-    languageName = "English"
+  [languages.zh]
+    languageName = "简体中文"
     weight = 2
     contentDir = "content"
 
@@ -68,31 +68,31 @@ hasCJKLanguage = true
   [[languages.zh.menu.main]]
     identifier = "home"
     name = "首页"
-    url = "/"
+    pageRef = "/"
     weight = 1
 
   [[languages.zh.menu.main]]
     identifier = "members"
     name = "成员"
-    url = "/members/"
+    pageRef = "/members"
     weight = 2
 
   [[languages.zh.menu.main]]
     identifier = "research"
     name = "科研"
-    url = "/research/"
+    pageRef = "/research"
     weight = 3
 
   [[languages.zh.menu.main]]
     parent = "research"
     name = "论文"
-    url = "/research/publications/"
+    pageRef = "/research/publications/"
     weight = 1
 
   [[languages.zh.menu.main]]
     parent = "research"
     name = "项目"
-    url = "/research/projects/"
+    pageRef = "/research/projects/"
     weight = 2
 
   [[languages.zh.menu.main]]
@@ -120,14 +120,14 @@ hasCJKLanguage = true
 
   [[languages.zh.menu.main]]
     identifier = "coideas"
-    name = "Coideas.Me"
-    url = "/coideas/"
+    name = "CoIdeas.Me"
+    url = "https://coideas.me"
     weight = 5
 
   [[languages.zh.menu.main]]
     identifier = "about"
     name = "关于我们"
-    url = "/about/"
+    pageRef = "/about"
     weight = 6
 
 
@@ -136,31 +136,31 @@ hasCJKLanguage = true
   [[languages.en.menu.main]]
     identifier = "home"
     name = "Home"
-    url = "/en/"
+    pageRef = "/"
     weight = 1
 
   [[languages.en.menu.main]]
     identifier = "members"
     name = "Members"
-    url = "/en/members/"
+    pageRef = "/members"
     weight = 2
 
   [[languages.en.menu.main]]
     identifier = "research"
     name = "Research"
-    url = "/en/research/"
+    pageRef = "/research"
     weight = 3
   
   [[languages.en.menu.main]]
     parent = "research"
     name = "Publications"
-    url = "/en/research/publications/"
+    pageRef = "/research/publications/"
     weight = 1
 
   [[languages.en.menu.main]]
     parent = "research"
     name = "Projects"
-    url = "/en/research/projects/"
+    pageRef = "/research/projects/"
     weight = 2
 
   [[languages.en.menu.main]]
@@ -186,17 +186,16 @@ hasCJKLanguage = true
     url = "https://dasellmg.yuque.com/org-wiki-dasellmg-vsl5wg/lmfs2025"
     weight = 3
 
-  # 待修改
   [[languages.en.menu.main]]
     identifier = "coideas"
-    name = "Coideas.Me"
-    url = "/en/coideas"
+    name = "CoIdeas.Me"
+    url = "https://coideas.me"
     weight = 5
 
   [[languages.en.menu.main]]
     identifier = "about"
     name = "About Us"
-    url = "/en/about/"
+    pageRef = "/about"
     weight = 6
 
 
@@ -205,12 +204,6 @@ hasCJKLanguage = true
     name = "Home"
     url = "/"
     weight = 1
-
-  [[menu.footer]]
-    name = "Github"
-    url = "https://github.com/opera7133/tella"
-    pre = "<i class='icon-github text-2xl'></i>"
-    weight = 2
 
 [outputFormats]
   [outputFormats.SearchIndex]

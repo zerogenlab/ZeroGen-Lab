@@ -25,6 +25,8 @@
       var overlay = document.getElementById("overlay");
       var body = document.body;
 
+      if (!hamburger || !overlay) return;
+
       hamburger.addEventListener("click", function () {
         overlay.classList.toggle("open");
         hamburger.classList.toggle("is-open");
@@ -33,9 +35,17 @@
     }
     toggleNav();
 
-    document.querySelector('.scroll-top').addEventListener('click', () => {
-      document.documentElement.scrollTop = 0;
-    });
+    (function () {
+      var btn = document.querySelector(".scroll-top");
+      if (!btn) return; 
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
+    })();
   </script>
   {{ if .Site.Params.googleFonts }}
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet" />
@@ -51,13 +61,17 @@
       </div>
       <div class="flex flex-row items-center text-lg">
         {{ range .Site.Menus.footer }}
-        <a href="{{ .URL }}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8">
-          {{ if not .Pre }}
-          {{ .Name }}
-          {{ else }}
-          {{ .Pre }}
-          {{ end }}
-        </a>
+          {{ $raw := .URL }}
+          {{ $isExt := or (hasPrefix $raw "http://") (hasPrefix $raw "https://") }}
+          <a href="{{ if $isExt }}{{ $raw | safeURL }}{{ else }}{{ $raw | relLangURL }}{{ end }}"
+            class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8"
+            {{ if $isExt }}target="_blank" rel="noopener"{{ end }}>
+            {{ if not .Pre }}
+              {{ .Name }}
+            {{ else }}
+              {{ .Pre }}
+            {{ end }}
+          </a>
         {{ end }}
       </div>
     </div>

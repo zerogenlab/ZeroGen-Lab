@@ -18,3 +18,24 @@
 {{ end }}
 <link href='{{ "/css/style.min.css" | relURL }}' rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+{{- $siteURL := .Site.BaseURL -}}
+{{- $logoAbs := ("/img/logo/ZEROGENLAB_LOGO.png" | absURL) -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ZeroGen Lab",
+  "url": "{{ $siteURL }}",
+  "logo": "{{ $logoAbs }}"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ZeroGen Lab",
+  "url": "{{ $siteURL }}"
+}
+</script>

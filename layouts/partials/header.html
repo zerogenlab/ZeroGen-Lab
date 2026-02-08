@@ -35,7 +35,7 @@
 
       <!-- 左：Logo + 实验室名 -->
       <div class="flex items-center h-full of-hidden">
-        <a href="{{ .Site.BaseURL }}" class="flex items-center h-full gap-3">
+        <a href="{{"/" | relLangURL}}" class="flex items-center h-full gap-3">
           <img
             alt="ZeroGen Lab"
             class="nav-logo"
@@ -60,24 +60,49 @@
 
               <!-- 教学（下拉） -->
               <div class="nav-dropdown-menu">
-                {{ range .Children }}
-                  {{ $u := .URL | safeURL }}
-                  <a href="{{ $u }}"
-                    {{ if or (hasPrefix $u "http://") (hasPrefix $u "https://") }}
-                      target="_blank" rel="noopener"
+                  {{ range .Children }}
+                    {{ $raw := .URL }}
+                    {{ $isExt := or (hasPrefix $raw "http://") (hasPrefix $raw "https://") }}
+                    {{ $href := "" }}
+                    {{ with .Page }}
+                      {{ $href = .RelPermalink }}
+                    {{ else }}
+                      {{ if $isExt }}
+                        {{ $href = $raw | safeURL }}
+                      {{ else }}
+                        {{ $href = $raw | relLangURL }}
+                      {{ end }}
                     {{ end }}
-                    class="nav-dropdown-item">
-                    {{ .Name }}
-                  </a>
-                {{ end }}
-              </div>
-            </div>
 
-          {{ else }}
-            <!-- 普通菜单 -->
-            <a href="{{ .URL | safeURL }}"
-               class="nav-item hover:opacity-60 transition-opacity duration-200">
-              {{ .Name }}
+                    <a href="{{ $href }}"
+                      {{ if $isExt }}target="_blank" rel="noopener"{{ end }}
+                      class="nav-dropdown-item">
+                      {{ .Name }}
+                    </a>
+                  {{ end }}
+                </div>
+              </div>
+
+            {{ else }}
+              <!-- 普通菜单 -->
+              {{ $raw := .URL }}
+              {{ $isExt := or (hasPrefix $raw "http://") (hasPrefix $raw "https://") }}
+
+              {{ $href := "" }}
+              {{ with .Page }}
+                {{ $href = .RelPermalink }}
+              {{ else }}
+                {{ if $isExt }}
+                  {{ $href = $raw | safeURL }}
+                {{ else }}
+                  {{ $href = $raw | relLangURL }}
+                {{ end }}
+              {{ end }}
+
+              <a href="{{ $href }}"
+                {{ if $isExt }}target="_blank" rel="noopener"{{ end }}
+                class="nav-item hover:opacity-60 transition-opacity duration-200">
+                {{ .Name }}
             </a>
 
             {{/* 语言切换 */}}
@@ -111,10 +136,11 @@
                       </a>
                     {{ end }}
                   {{ else }}
-                    {{ range $.Site.Languages }}
-                      <a href="{{ "/" | relLangURL }}"
-                         class="block px-3 py-2 text-sm text-black/80 hover:bg-black/5">
-                        {{ .LanguageName }}
+                    {{/* 没翻译就跳到各语言首页 */}}
+                    {{ range $.Site.Home.AllTranslations }}
+                      <a href="{{ .RelPermalink }}"
+                        class="block px-3 py-2 text-sm text-black/80 hover:bg-black/5">
+                        {{ .Language.LanguageName }}
                       </a>
                     {{ end }}
                   {{ end }}
